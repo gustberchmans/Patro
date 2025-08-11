@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -24,17 +25,32 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $validated = $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'birthday' => 'nullable|date',
+            'profielfoto' => 'nullable|image|max:2048', // max 2MB
+            'about' => 'nullable|string|max:1000',
+        ]);
+
+        // Profielfoto uploaden en pad opslaan
+        if ($request->hasFile('profielfoto')) {
+            $path = $request->file('profielfoto')->store('profielfotos', 'public');
+            $validated['profielfoto'] = $path;
+
+            // Optioneel: oude foto verwijderen
+            if ($user->profielfoto) {
+                Storage::disk('public')->delete($user->profielfoto);
+            }
         }
 
-        $request->user()->save();
+        $user->update($validated);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return back()->with('status', 'profile-updated');
     }
 
     /**
@@ -56,5 +72,16 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->when($search, fn($query) => $query->where('username', 'like', "%{$search}%"))
+            ->paginate(10);
+
+        return view('profile.index', compact('users'));
     }
 }
