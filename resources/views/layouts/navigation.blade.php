@@ -19,6 +19,14 @@
             </div>
 
             @auth
+                @if(Auth::user()->admin)
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                        {{ __('Admin Dashboard') }}
+                    </x-nav-link>
+                @endif
+            @endauth
+
+            @auth
                 <!-- Dropdown met gebruikersnaam -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown align="right" width="48">
@@ -45,7 +53,7 @@
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profiel bewerken') }}
-                            </x-dropdown-link>
+                            </x-dropdown-link>                           
                             <!-- meer dropdown opties -->
                             <!-- Logout -->
                             <form method="POST" action="{{ route('logout') }}">

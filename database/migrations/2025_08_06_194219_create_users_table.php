@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('voornaam');
             $table->string('achternaam');
             $table->date('verjaardag');
-            $table->string('profielfoto')->nullable(); // hier komt het pad naar de foto
+            $table->string('profielfoto')->default('profielphotos/default.png'); // hier komt het pad naar de foto
             $table->text('about_me')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->boolean('admin')->default(false);
             $table->timestamps();
         });
     }
