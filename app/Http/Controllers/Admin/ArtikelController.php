@@ -36,4 +36,9 @@ class ArtikelController extends Controller
 
         return redirect()->route('admin.artikels.index')->with('success', 'Artikel toegevoegd!');
     }
+
+    public function show(Artikel $artikel)
+    {
+        return view('artikels.show', compact('artikel'));
+    }
 }

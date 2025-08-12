@@ -18,9 +18,10 @@ use App\Models\User;
 // Home / Dashboard route (met artikelen)
 Route::get('/', function () {
     $artikels = Artikel::orderBy('publicatiedatum', 'desc')->get();
-    return view('welcome', compact('artikels'));
+    return view('dashboard', compact('artikels'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/artikels/{artikel}', [ArtikelController::class, 'show'])->name('artikels.show');
 /*
 |---------------------------------------------------------------------------
 | Auth Routes

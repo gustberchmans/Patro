@@ -52,6 +52,12 @@
                                 </p>
                             @endif
 
+                            <!-- Lees meer link -->
+                            <a href="{{ route('artikels.show', $artikel->id) }}" 
+                               class="text-blue-600 hover:underline mt-3 inline-block">
+                               Lees meer
+                            </a>
+                            
                             <!-- Content -->
                             <p class="text-gray-700 dark:text-gray-300">
                                 {{ Str::limit($artikel->content, 200) }}
