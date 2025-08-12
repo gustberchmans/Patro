@@ -23,7 +23,7 @@
                     Zoek
                 </button>
             </form>
-            
+
             <!-- Newsfeed -->
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
@@ -56,12 +56,6 @@
                             <p class="text-gray-700 dark:text-gray-300">
                                 {{ Str::limit($artikel->content, 200) }}
                             </p>
-
-                            <!-- Lees meer link -->
-                            <a href="{{ route('artikels.show', $artikel) }}" 
-                            class="text-blue-600 hover:underline mt-3 inline-block">
-                                Lees meer
-                            </a>
                         </div>
                     </div>
                 @empty
