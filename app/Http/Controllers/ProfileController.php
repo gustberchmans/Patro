@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
 
+
 class ProfileController extends Controller
 {
     /**
@@ -31,7 +32,7 @@ class ProfileController extends Controller
 
         $validated = $request->validate([
             'username' => 'required|string|max:255',
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', 'max:255'],
             'birthday' => 'nullable|date',
             'profielfoto' => 'nullable|image|max:2048', // max 2MB
             'about' => 'nullable|string|max:1000',

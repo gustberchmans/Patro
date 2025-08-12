@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');  // pas aan naar waar je wilt
+            return redirect()->intended('/');  // pas aan naar waar je wilt
         }
 
         return back()->withErrors([
@@ -71,7 +71,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended('/dashboard');  // Pas aan naar waar je wil na registratie
+        return redirect()->intended('/');  // Pas aan naar waar je wil na registratie
     }
 
     public function logout(Request $request)
@@ -81,7 +81,7 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
 

@@ -23,10 +23,10 @@
 
         <!-- Verjaardag -->
         <div>
-            <x-input-label for="birthday" :value="__('Verjaardag')" />
-            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" 
-                          :value="old('birthday', optional($user->birthday)->format('Y-m-d'))" autocomplete="bday" />
-            <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
+            <x-input-label for="verjaardag" :value="__('Verjaardag')" />
+            <x-text-input id="verjaardag" name="verjaardag" type="date" class="mt-1 block w-full" 
+                          :value="old('verjaardag', optional($user->verjaardag)->format('Y-m-d'))" autocomplete="bday" />
+            <x-input-error class="mt-2" :messages="$errors->get('verjaardag')" />
         </div>
 
         <!-- Profielfoto -->
@@ -41,9 +41,9 @@
 
         <!-- Over mij -->
         <div>
-            <x-input-label for="about" :value="__('Over mij')" />
-            <textarea id="about" name="about" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">{{ old('about', $user->about) }}</textarea>
-            <x-input-error class="mt-2" :messages="$errors->get('about')" />
+            <x-input-label for="about_me" :value="__('Over mij')" />
+            <textarea id="about_me" name="about_me" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">{{ old('about_me', $user->about_me) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('about_me')" />
         </div>
 
         <!-- Email (zoals eerder) -->

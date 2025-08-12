@@ -5,8 +5,10 @@
         </h2>
     </x-slot>
     <div class="max-w-7xl mx-auto p-6">
-        <div class="mt-6">
+
+        <div class="mt-6 flex gap-4">
             <a href="{{ route('users.index') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Gebruikers beheren</a>
+            <a href="{{ route('admin.newsfeed') }}" class="px-4 py-2 bg-green-500 text-white rounded">Artikels beheren</a>
         </div>
     </div>
 </x-app-layout>

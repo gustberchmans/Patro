@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Models\User;
+use App\Models\Artikel;
+use App\Http\Controllers\Admin\ArtikelController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
+    $artikels = Artikel::orderBy('publicatiedatum', 'desc')->get();
+    return view('welcome', compact('artikels'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,9 +35,11 @@ Route::get('/profile/{user}', function (App\Models\User $user) {
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
-// Admin routes met middleware
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/newsfeed', [ArtikelController::class, 'index'])->name('admin.newsfeed');
+
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::patch('/users/{user}/toggle-admin', [UserController::class, 'toggleAdmin'])->name('users.toggleAdmin');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');

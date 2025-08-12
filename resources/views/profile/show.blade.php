@@ -17,7 +17,7 @@
 
             <div>
                 <p><strong>Username:</strong> {{ $user->username ?? '-' }}</p>
-                <p><strong>Verjaardag:</strong> {{ $user->birthday ? \Illuminate\Support\Carbon::parse($user->birthday)->format('d-m-Y') : '-' }}</p>
+                <p><strong>Verjaardag:</strong> {{ $user->verjaardag ? \Illuminate\Support\Carbon::parse($user->verjaardag)->format('d-m-Y') : '-' }}</p>
                 <p><strong>Over mij:</strong></p>
                 <p class="whitespace-pre-wrap">{{ $user->about_me ?? 'Nog geen informatie.' }}</p>
             </div>
