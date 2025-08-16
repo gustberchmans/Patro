@@ -19,7 +19,7 @@ use App\Models\User;
 Route::get('/', function () {
     $artikels = Artikel::orderBy('publicatiedatum', 'desc')->get();
     return view('dashboard', compact('artikels'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 Route::get('/artikels/{artikel}', [ArtikelController::class, 'show'])->name('artikels.show');
 /*
@@ -74,6 +74,9 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::get('/artikels/index', [ArtikelController::class, 'index'])->name('artikels.index');
     Route::get('/artikels/create', [ArtikelController::class, 'create'])->name('artikels.create');
     Route::post('/artikels', [ArtikelController::class, 'store'])->name('artikels.store');
+    Route::get('/artikels/{artikel}/edit', [ArtikelController::class, 'edit'])->name('artikels.edit');
+    Route::put('/artikels/{artikel}', [ArtikelController::class, 'update'])->name('artikels.update');
+    Route::delete('/artikels/{artikel}', [ArtikelController::class, 'destroy'])->name('artikels.destroy');
 
     // Je kan hier eventueel nog show/edit/update/delete routes voor artikels toevoegen als je wil
 });

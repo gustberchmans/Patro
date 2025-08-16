@@ -51,17 +51,17 @@
                                     Gepubliceerd op {{ $artikel->publicatiedatum->format('d-m-Y') }}
                                 </p>
                             @endif
+                            
+                            <!-- Content -->
+                            <p class="text-gray-700 dark:text-gray-300">
+                                {{ Str::limit($artikel->content, 200) }}
+                            </p>
 
                             <!-- Lees meer link -->
                             <a href="{{ route('artikels.show', $artikel->id) }}" 
                                class="text-blue-600 hover:underline mt-3 inline-block">
                                Lees meer
                             </a>
-                            
-                            <!-- Content -->
-                            <p class="text-gray-700 dark:text-gray-300">
-                                {{ Str::limit($artikel->content, 200) }}
-                            </p>
                         </div>
                     </div>
                 @empty

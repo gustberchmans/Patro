@@ -51,17 +51,20 @@
                             </button>
                         </x-slot>
                         <x-slot name="content">
+                            <x-responsive-nav-link :href="route('profile.show', Auth::user()->id)">
+                                {{ __('Bekijk profiel') }}
+                            </x-responsive-nav-link>  
                             <x-responsive-nav-link :href="route('profile.edit')">
                                 {{ __('Profiel bewerken') }}
-                            </x-responsive-nav-link>          
+                            </x-responsive-nav-link>         
                             <!-- meer dropdown opties -->
                             <!-- Logout -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-dropdown-link :href="route('logout')"
+                                <x-responsive-nav-link :href="route('logout')"
                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                     {{ __('Uitloggen') }}
-                                </x-dropdown-link>
+                                </x-responsive-nav-link>
                             </form>
                         </x-slot>
                     </x-dropdown>

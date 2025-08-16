@@ -41,4 +41,36 @@ class ArtikelController extends Controller
     {
         return view('artikels.show', compact('artikel'));
     }
+
+    public function edit(Artikel $artikel)
+    {
+        return view('admin.artikels.edit', compact('artikel'));
+    }
+
+    public function update(Request $request, Artikel $artikel)
+    {
+        $validated = $request->validate([
+            'titel' => 'required|string|max:255',
+            'content' => 'required|string',
+            'publicatiedatum' => 'required|date',
+            'afbeelding' => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('afbeelding')) {
+            $path = $request->file('afbeelding')->store('artikels', 'public');
+            $validated['afbeelding'] = $path;
+        }
+
+        $artikel->update($validated);
+
+        return redirect()->route('admin.artikels.index')->with('success', 'Artikel succesvol bijgewerkt.');
+    }
+
+    public function destroy(Artikel $artikel)
+    {
+        $artikel->delete();
+
+        return redirect()->route('admin.artikels.index')->with('success', 'Artikel succesvol verwijderd.');
+    }
+
 }
