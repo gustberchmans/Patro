@@ -22,6 +22,8 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::get('/artikels/{artikel}', [ArtikelController::class, 'show'])->name('artikels.show');
+Route::get('/faq', [App\Http\Controllers\FaqController::class, 'index'])->name('faq');
+
 /*
 |---------------------------------------------------------------------------
 | Auth Routes
