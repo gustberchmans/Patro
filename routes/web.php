@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ArtikelController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
+use App\Http\Controllers\FaqController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Artikel;
 use App\Models\User;
@@ -22,7 +24,7 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::get('/artikels/{artikel}', [ArtikelController::class, 'show'])->name('artikels.show');
-Route::get('/faq', [App\Http\Controllers\FaqController::class, 'index'])->name('faq');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 /*
 |---------------------------------------------------------------------------
@@ -80,7 +82,12 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::put('/artikels/{artikel}', [ArtikelController::class, 'update'])->name('artikels.update');
     Route::delete('/artikels/{artikel}', [ArtikelController::class, 'destroy'])->name('artikels.destroy');
 
-    // Je kan hier eventueel nog show/edit/update/delete routes voor artikels toevoegen als je wil
+    Route::get('/admin/faqs', [AdminFaqController::class, 'index'])->name('faqs.index');
+    Route::get('/admin/faqs/create', [AdminFaqController::class, 'create'])->name('faqs.create');
+    Route::post('/admin/faqs', [AdminFaqController::class, 'store'])->name('faqs.store');
+    Route::get('/admin/faqs/{faq}/edit', [AdminFaqController::class, 'edit'])->name('faqs.edit');
+    Route::put('/admin/faqs/{faq}', [AdminFaqController::class, 'update'])->name('faqs.update');
+    Route::delete('/admin/faqs/{faq}', [AdminFaqController::class, 'destroy'])->name('faqs.destroy');
 });
 
 require __DIR__.'/auth.php';
