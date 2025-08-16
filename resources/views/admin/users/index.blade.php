@@ -6,7 +6,7 @@
             </h2>
 
             <div>
-                <a href="{{ route('users.create') }}" 
+                <a href="{{ route('admin.users.create') }}" 
                 class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
                 Nieuwe gebruiker aanmaken
                 </a>
@@ -31,7 +31,7 @@
                         <td class="border px-4 py-2">{{ $user->username }}</td>
                         <td class="border px-4 py-2">{{ $user->email }}</td>
                         <td class="border px-4 py-2 text-center">
-                            <form method="POST" action="{{ route('users.toggleAdmin', $user->id) }}">
+                            <form method="POST" action="{{ route('admin.users.toggleAdmin', $user->id) }}">
                                 @csrf
                                 @method('PATCH')
                                 <input type="checkbox" name="admin" 
