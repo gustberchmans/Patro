@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Artikel;
 use App\Models\User;
@@ -25,6 +26,8 @@ Route::get('/', function () {
 
 Route::get('/artikels/{artikel}', [ArtikelController::class, 'show'])->name('artikels.show');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 /*
 |---------------------------------------------------------------------------
