@@ -60,12 +60,30 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## How to
+## How to run
 
-php artisan serve -q & npm run dev
+1. Clone het project
+git clone https://github.com/gustberchmans/Patro
+cd Patro
+
+2. Installeer PHP dependencies:
+composer install
+
+3. Installeer NPM dependencies:
+npm install
+npm run dev
+
+4. Maak .env
+kopier de .env te vinden in de commentaar van deze opdracht
+
+5. Maak de database aan
+touch database/database.sqlite
+
+6. Genereer de applicatie key:
+php artisan key:generate
+
+7. Migrate en seed de database:
 php artisan migrate:fresh --seed
-
-de .env staat in de commentaar waar ik heb ingediend
 
 ## Bron
 
