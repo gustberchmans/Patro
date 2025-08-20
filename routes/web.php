@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Artikel;
 use App\Models\User;
@@ -59,6 +60,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user}', function (User $user) {
         return view('profile.show', compact('user'));
     })->name('profile.show');
+
+    Route::post('/artikels/{artikel}/comments', [CommentController::class, 'store'])
+        ->name('comments.store');
 });
 
 /*

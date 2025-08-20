@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ]);
 
         // Gewone users
-        User::factory(8)->create();
+        User::factory(19)->create();
     }
 }
 

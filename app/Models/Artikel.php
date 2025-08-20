@@ -19,5 +19,10 @@ class Artikel extends Model
     protected $casts = [
         'publicatiedatum' => 'date',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
 

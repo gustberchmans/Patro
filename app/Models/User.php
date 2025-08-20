@@ -53,4 +53,9 @@ class User extends Authenticatable
             'verjaardag' => 'date',
         ];
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
