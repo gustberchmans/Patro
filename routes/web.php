@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/artikels/{artikel}/comments', [CommentController::class, 'store'])
         ->name('comments.store');
+    
+    Route::get('/store', [OrderController::class, 'create'])->name('store');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 });
 
 /*
@@ -95,6 +100,8 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::get('/admin/faqs/{faq}/edit', [AdminFaqController::class, 'edit'])->name('faqs.edit');
     Route::put('/admin/faqs/{faq}', [AdminFaqController::class, 'update'])->name('faqs.update');
     Route::delete('/admin/faqs/{faq}', [AdminFaqController::class, 'destroy'])->name('faqs.destroy');
+
+    Route::get('/orders', [App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
 });
 
 require __DIR__.'/auth.php';

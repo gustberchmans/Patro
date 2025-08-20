@@ -15,10 +15,15 @@ class CommentSeeder extends Seeder
         $artikels = Artikel::all();
 
         foreach ($artikels as $artikel) {
-            Comment::factory(rand(2, 5))->create([
-                'artikel_id' => $artikel->id,
-                'user_id'    => User::inRandomOrder()->first()->id,
-            ]);
+            Comment::factory()
+                ->count(rand(2, 5))
+                ->state(function () use ($artikel) {
+                    return [
+                        'artikel_id' => $artikel->id,
+                        'user_id'    => User::inRandomOrder()->first()->id,
+                    ];
+                })
+                ->create();
         }
     }
 }

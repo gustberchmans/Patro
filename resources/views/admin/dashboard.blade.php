@@ -9,6 +9,7 @@
             <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Gebruikers beheren</a>
             <a href="{{ route('admin.artikels.index') }}" class="px-4 py-2 bg-green-500 text-white rounded">Artikels beheren</a>
             <a href="{{ route('admin.faqs.index') }}" class="px-4 py-2 bg-purple-500 text-white rounded">FAQ beheren</a>
+            <a href="{{ route('admin.orders.index') }}" class="px-4 py-2 bg-red-500 text-white rounded">Bestellingen beheren</a>
         </div>
     </div>
 </x-app-layout>
