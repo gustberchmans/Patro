@@ -25,19 +25,19 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'username'   => 'test.icle',
-            'voornaam'   => 'Admin',
+            'username'   => 'test',
+            'voornaam'   => 'Test',
             'achternaam' => 'Gebruiker',
             'verjaardag' => '1990-01-01',
             'profielfoto'=> 'profielfotos/default.png',
-            'about_me'   => 'Ik ben de admin.',
-            'email'      => 'test@icle.com',
+            'about_me'   => 'Ik ben de test gebruiker.',
+            'email'      => 'test@ehb.be',
             'password'   => Hash::make('1a2b3c4d'),
             'admin'      => false,
         ]);
 
         // Gewone users
-        User::factory(19)->create();
+        User::factory(18)->create();
     }
 }
 
